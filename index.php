@@ -1,7 +1,12 @@
 <?php
-    print $_ENV["MYSQL_SERVICE_HOST"];
-    print $_ENV["MYSQL_SERVICE_PORT"];
-    $link = mysqli_connect($_ENV["MYSQL_SERVICE_HOST"],"user1","mypa55","quotes", $_ENV["MYSQL_SERVICE_PORT"]) or die("Error " . mysqli_error($link)); 
+    
+    $link = new mysqli($_ENV["MYSQL_SERVICE_HOST"],"user1","mypa55","quotes", $_ENV["MYSQL_SERVICE_PORT"]);
+
+    // Check connection
+    if ($mysqli -> connect_errno) {
+      echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+      exit();
+    }
 
     $query = "SELECT count(*) FROM quote";
     $result = $link->query($query) or die("Error in the consult.." . mysqli_error($link));
