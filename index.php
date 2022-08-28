@@ -1,8 +1,4 @@
 <?php
-    
-    print $_ENV["MYSQL_SERVICE_HOST"];
-    print $_ENV["MYSQL_SERVICE_PORT"];
-
     $link = new mysqli($_ENV["MYSQL_SERVICE_HOST"],"user1","mypa55","quotes", $_ENV["MYSQL_SERVICE_PORT"]);
 
     // Check connection
