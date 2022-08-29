@@ -1,25 +1,100 @@
-<?php
-    $link = new mysqli($_ENV["MYSQL_SERVICE_HOST"],"user1","mypa55","quotes", $_ENV["MYSQL_SERVICE_PORT"]);
-
-    // Check connection
-    if ($mysqli -> connect_errno) {
-      echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
-      exit();
+<style>
+    body {
+        margin: 0;
     }
 
-    $query = "SELECT count(*) FROM quote";
-    $result = $link->query($query) or die("Error in the consult.." . mysqli_error($link));
-    $row = mysqli_fetch_array($result);
-    mysqli_free_result($result);
+    #title_inner {
+        color: #111111;
+        padding: 12px;
+        margin: 12px;
+        display: inline-block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 27px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
 
-    $id = rand(1,$row[0]);
+    #title_outer {
+        width: 100%;
+        height: 12%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-    $query = "SELECT msg FROM quote WHERE id = " . $id;
-    $result = $link->query($query) or die("Error in the consult.." . mysqli_error($link));
-    $row = mysqli_fetch_array($result);
-    mysqli_free_result($result);
+    #inner_inner {
+        color: #fff;
+        padding: 12px;
+        display: inline-block;
+        text-align: center;
+        font-size: 22px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
 
-    print $row[0] . "\n";
+    #inner {
+        color: #fff;
+        background: #2d2d2d;
+        border: #fff 5px solid;
+        box-shadow: #2d2d2d 0px 0px 30px -10px;
+        border-radius: 15px;
+        padding: 12px;
+        margin: 12px;
+        display: inline-block;
+        min-height: 50px;
+        min-width: 200px;
+        max-width: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-    mysqli_close($link);
-?>
+    #outer {
+        width: 100%;
+        height: 88%;
+        background: #009999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<div id="title_outer">
+    <div id="title_inner">
+        Quotes-PHP - A small hands-on-workshop
+    </div>
+</div>
+
+<div id="outer">
+    <div id="inner">
+        <div id="inner_inner">
+            <?php
+                $link = new mysqli($_ENV["MYSQL_SERVICE_HOST"],"user1","mypa55","quotes", $_ENV["MYSQL_SERVICE_PORT"]);
+
+                // Check connection
+                if ($mysqli -> connect_errno) {
+                  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+                  exit();
+                }
+
+                $query = "SELECT count(*) FROM quote";
+                $result = $link->query($query) or die("Error in the consult.." . mysqli_error($link));
+                $row = mysqli_fetch_array($result);
+                mysqli_free_result($result);
+
+                $id = rand(1,$row[0]);
+
+                $query = "SELECT msg FROM quote WHERE id = " . $id;
+                $result = $link->query($query) or die("Error in the consult.." . mysqli_error($link));
+                $row = mysqli_fetch_array($result);
+                mysqli_free_result($result);
+
+                print $row[0] . "\n";
+
+                mysqli_close($link);
+            ?>
+        </div>
+    </div>
+</div>
+
+
