@@ -82,8 +82,6 @@
                 if (isset($_POST["quote"])) {
                     $query = "insert into quote (msg) values ('". $_POST["quote"] ."');";
                     $result = $link->query($query) or die("Error in the consult.." . mysqli_error($link));
-                    $row = mysqli_fetch_array($result);
-                    mysqli_free_result($result);
                 }
 
                 $query = "SELECT count(*) FROM quote";
