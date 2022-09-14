@@ -78,6 +78,8 @@
                   echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
                   exit();
                 }
+            
+                print $_GET["quote"];
 
                 $query = "SELECT count(*) FROM quote";
                 $result = $link->query($query) or die("Error in the consult.." . mysqli_error($link));
@@ -94,17 +96,15 @@
                 print $row[0] . "\n";
             ?>
             
-            <label for="phone">Enter a phone number:</label><br><br>
-            <input type="tel" id="phone" name="phone" placeholder="123-45-678"
-            pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"><br><br>
-            <small>Format: 123-45-678</small><br><br>
-            <input type="submit">
-            
             <?php
                 mysqli_close($link);
             ?>
         </div>
     </div>
+    <form action="index.php" method="post">
+    Quote: <input type="text" name="quote"><br>
+    <input type="submit">
+    </form>
 </div>
 
 
