@@ -79,7 +79,12 @@
                   exit();
                 }
             
-                print $_GET["quote"];
+                if (isset($_GET["quote"])) {
+                    query = "insert into quote values (1, '". $_GET["quote"] ."');";
+                    $result = $link->query($query) or die("Error in the consult.." . mysqli_error($link));
+                    $row = mysqli_fetch_array($result);
+                    mysqli_free_result($result);
+                }
 
                 $query = "SELECT count(*) FROM quote";
                 $result = $link->query($query) or die("Error in the consult.." . mysqli_error($link));
