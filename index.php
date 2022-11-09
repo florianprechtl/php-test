@@ -69,12 +69,12 @@
     <div id="inner">
         <div id="inner_inner">
             <?php
-                $mysqli = new mysqli($_ENV["MYSQL_SERVICE_HOST"],"user1","mypa55","quotes", $_ENV["MYSQL_SERVICE_PORT"]);
+                $link = new mysqli($_ENV["MYSQL_SERVICE_HOST"],"user1","mypa55","quotes", $_ENV["MYSQL_SERVICE_PORT"]);
             ?>
             
             <?php
                 // Check connection
-                if ($mysqli -> connect_errno) {
+                if ($link -> connect_errno) {
                   echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
                   exit();
                 }
